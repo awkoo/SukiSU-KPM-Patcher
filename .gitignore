@@ -1,8 +1,20 @@
-.vscode/*
-.history/
-.cache/
+# Prerequisites
+*.d
 
-**/.DS_Store
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
 
-test
-script
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+*.bin
+*.elf
+
+/build-android
+/build-linux
