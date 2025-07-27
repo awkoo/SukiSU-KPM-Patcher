@@ -43,7 +43,7 @@ jobs:
         working-directory: zlib-arm64
         run: |
           CROSS_PREFIX=aarch64-linux-gnu- ./configure
-          make all install
+          sudo make all install
 
       - name: Build
         run: |
