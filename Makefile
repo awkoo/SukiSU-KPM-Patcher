@@ -40,7 +40,7 @@ kptools:
 # 加密工具和加密镜像
 # ======================
 $(ENCRYPT_BIN): encrypt.cpp
-	$(CXX) $(OPTIMIZE) $(CXXFLAGS) -o $@
+	$(CXX) $(OPTIMIZE) $(CXXFLAGS) -o $@ $<
 
 $(KPIMG_ENC): $(ENCRYPT_BIN) kpimg
 	./$< kpimg/kpimg $@
