@@ -25,7 +25,7 @@ PATCHER_BIN    = patcher
 # ======================
 # 主构建目标
 # ======================
-all: $(PATCHER_BIN)
+all: clean $(PATCHER_BIN)
 
 # ======================
 # 子项目构建

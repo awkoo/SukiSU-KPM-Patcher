@@ -1,12 +1,12 @@
 # ======================
 # 工具链配置
 # ======================
-TARGET = kpimg
-TARGET_COMPILE = aarch64-linux-gnu-
-CC  = $(TARGET_COMPILE)gcc
-LD  = $(TARGET_COMPILE)ld
-AS  = $(TARGET_COMPILE)as
-OBJCOPY = $(TARGET_COMPILE)objcopy
+TARGET := kpimg
+override TARGET_COMPILE := aarch64-linux-gnu-
+CC  := $(TARGET_COMPILE)gcc
+LD  := $(TARGET_COMPILE)ld
+AS  := $(TARGET_COMPILE)as
+OBJCOPY := $(TARGET_COMPILE)objcopy
 
 # ======================
 # 编译选项
@@ -52,16 +52,16 @@ LDFLAGS += -Tkpimg.lds --no-relax -nostdlib -static -no-pie
 all: $(TARGET)
 
 $(TARGET): $(TARGET).elf
-	@$(OBJCOPY) -O binary -S $^ $@
+	$(OBJCOPY) -O binary -S $^ $@
 
 $(TARGET).elf: $(OBJS)
-	@$(LD) $(LDFLAGS) -e start -o $@ $^
+	$(LD) $(LDFLAGS) -e start -o $@ $^
 
 %.o: %.c
-	@$(CC) $(CFLAGS) $(INCLUDE) -c -O2 -o $@ $<
+	$(CC) $(CFLAGS) $(INCLUDE) -c -O2 -o $@ $<
 
 %.o: %.S
-	@$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $<
+	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $<
 
 # ======================
 # 清理

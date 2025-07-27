@@ -15,6 +15,7 @@ jobs:
         with:
           submodules: "recursive"
           fetch-depth: 0
+
       - name: Generate version
         id: parse_version
         run: |
@@ -24,42 +25,37 @@ jobs:
           VERSION="$MAJOR.$MINOR.$PATCH"
           echo "Generated Version: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
       - name: Install Toolchains
         env:
           packages:
             binutils-aarch64-linux-gnu
-            binutils-arm-linux-gnueabi
-            binutils-i686-linux-gnu
             binutils-x86-64-linux-gnu
+            gcc-aarch64-linux-gnu
+            gcc-x86-64-linux-gnu
             g++-aarch64-linux-gnu
-            g++-arm-linux-gnueabi
-            g++-i686-linux-gnu
             g++-x86-64-linux-gnu
-            zlib1g-dev:arm64
-            zlib1g-dev:arm
-            zlib1g-dev:i686
-            zlib1g-dev:x86_64
             make
         run: |
           sudo apt install ${{ env.packages }} -y
+
+      - name: Install Zlib For ARM64
+        working-directory: zlib-arm64
+        run: |
+          CROSS_PREFIX=aarch64-linux-gnu- ./configure
+          make all install
 
       - name: Build
         run: |
           make TARGET_COMPILE=aarch64-linux-gnu-
           mv patcher sukisu-kpm-patcher-aarch64
-          make TARGET_COMPILE=arm-linux-gnueabi-
-          mv patcher sukisu-kpm-patcher-arm
           make TARGET_COMPILE=x86-64-linux-gnu-
           mv patcher sukisu-kpm-patcher-x86_64
-          make TARGET_COMPILE=i686-linux-gnu
-          mv patcher sukisu-kpm-patcher-x86
 
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
           tag: ${{ steps.parse_version.outputs.VERSION }}
           files: |
-            sukisu-kpm-patcher-x86
-            sukisu-kpm-patcher-x86_64
             sukisu-kpm-patcher-aarch64
-            sukisu-kpm-patcher-arm
+            sukisu-kpm-patcher-x86_64
