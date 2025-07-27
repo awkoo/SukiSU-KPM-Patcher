@@ -55,7 +55,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          tag: ${{ steps.parse_version.outputs.VERSION }}
+          tag_name: ${{ steps.parse_version.outputs.VERSION }}
           files: |
             sukisu-kpm-patcher-aarch64
             sukisu-kpm-patcher-x86_64
