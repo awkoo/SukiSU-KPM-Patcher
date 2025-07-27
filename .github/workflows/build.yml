@@ -49,7 +49,7 @@ jobs:
         run: |
           make TARGET_COMPILE=aarch64-linux-gnu-
           mv patcher sukisu-kpm-patcher-aarch64
-          make TARGET_COMPILE=x86-64-linux-gnu-
+          make TARGET_COMPILE=x86_64-linux-gnu-
           mv patcher sukisu-kpm-patcher-x86_64
 
       - name: Release
