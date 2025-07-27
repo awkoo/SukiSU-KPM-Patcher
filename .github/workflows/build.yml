@@ -35,7 +35,10 @@ jobs:
             g++-arm-linux-gnueabi
             g++-i686-linux-gnu
             g++-x86-64-linux-gnu
-            zlib1g-dev
+            zlib1g-dev:arm64
+            zlib1g-dev:arm
+            zlib1g-dev:i686
+            zlib1g-dev:x86_64
             make
         run: |
           sudo apt install ${{ env.packages }} -y
