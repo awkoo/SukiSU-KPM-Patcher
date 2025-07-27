@@ -3,7 +3,7 @@
 # ======================
 TARGET_COMPILE ?= 
 
-HOSTCXX.       = g++
+HOSTCXX        = g++
 CXX            = $(TARGET_COMPILE)g++
 CXXFLAGS       = -Iinclude
 OPTIMIZE       = -O3
