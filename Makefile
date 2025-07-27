@@ -3,7 +3,7 @@
 # ======================
 TARGET_COMPILE ?= 
 
-CC             = $(TARGET_COMPILE)gcc
+HOSTCXX.       = g++
 CXX            = $(TARGET_COMPILE)g++
 CXXFLAGS       = -Iinclude
 OPTIMIZE       = -O3
@@ -40,7 +40,7 @@ kptools:
 # 加密工具和加密镜像
 # ======================
 $(ENCRYPT_BIN): encrypt.cpp
-	$(CXX) $(OPTIMIZE) $(CXXFLAGS) -o $@ $<
+	$(HOSTCXX) $(CXXFLAGS) -o $@ $<
 
 $(KPIMG_ENC): $(ENCRYPT_BIN) kpimg
 	./$< kpimg/kpimg $@
